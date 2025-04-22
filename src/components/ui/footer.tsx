@@ -42,7 +42,7 @@ const Footer = forwardRef<HTMLElement, FooterProps>(
     return (
       <footer
         ref={ref}
-        className={cn("flex flex-col items-center py-[286px] gap-4", className)}
+        className={cn("flex flex-col items-center justify-center gap-4", className)}
         {...props}
       >
         {navItems && navItems.length > 0 && (
