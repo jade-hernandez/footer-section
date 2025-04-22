@@ -1,15 +1,16 @@
+import { cn } from "@/lib/utils";
 import { sectionsData } from "data/footer-data";
+import { HTMLAttributes, forwardRef } from "react";
 import FacebookIcon from "../icons/facebook-icon";
-import YoutubeIcon from "../icons/youtube-icon";
-import InstagramIcon from "../icons/instagram-icon";
 import GithubIcon from "../icons/github-icon";
+import InstagramIcon from "../icons/instagram-icon";
 import XIcon from "../icons/x-icon";
+import YoutubeIcon from "../icons/youtube-icon";
 
-
-
+// Default icons configuration
 const ICON_SIZE = 24;
 const ICON_COLOR = "#A3A3A3";
-const icons = [
+const defaultIcons = [
   {
     id: "youtube",
     icon: <YoutubeIcon size={ICON_SIZE} color={ICON_COLOR} />,
@@ -37,41 +38,125 @@ const icons = [
   }
 ];
 
-const IconButton: React.FC<{ children: React.ReactNode; label: string }> = ({
+// IconButton component
+const IconButton: React.FC<{
+  children: React.ReactNode;
+  label: string;
+  onClick?: () => void;
+}> = ({
   children,
   label,
+  onClick,
 }) => {
-  return (
-    <button className="p-2" aria-label={label}>
-      {children}
-    </button>
-  );
-};
+    return (
+      <button
+        className="p-2"
+        aria-label={label}
+        onClick={onClick}
+      >
+        {children}
+      </button>
+    );
+  };
 
-
-
-const Footer = () => {
-  return (
-    <footer className="flex flex-col items-center ">
-      <div className="">
-        {sectionsData.map(({ path, id, title }) => (
-          <a
-            key={id}
-            href={path}
-            className="text-neutral-600 text-sm p-1"
-          >
-            {title}
-          </a>
-        ))}
-      </div>
-      <div className="flex gap-4 justify-center">
-        {icons.map((icon) => (
-          <IconButton key={icon.id} label={icon.label}>
-            {icon.icon}
-          </IconButton>
-        ))}
-      </div>
-    </footer >
-  );
+// Props interface for the Footer component
+export interface FooterProps extends HTMLAttributes<HTMLElement> {
+  companyName?: string;
+  navItems?: Array<{
+    id: number | string;
+    title: string;
+    path: string;
+  }>;
+  socialIcons?: Array<{
+    id: string;
+    icon: React.ReactElement;
+    label: string;
+    onClick?: () => void;
+  }>;
+  showSocialIcons?: boolean;
+  showCopyright?: boolean;
+  initialYear?: number;
 }
-export default Footer;
+
+const Footer = forwardRef<HTMLElement, FooterProps>(
+  ({
+    companyName = "Abstractly, Inc.",
+    navItems = sectionsData,
+    socialIcons = defaultIcons,
+    showSocialIcons = true,
+    showCopyright = true,
+    initialYear,
+    className,
+    ...props
+  }, ref) => {
+    const currentYear = new Date().getFullYear();
+    const yearDisplay = initialYear && initialYear !== currentYear
+      ? `${initialYear}-${currentYear}`
+      : currentYear;
+
+    return (
+      <footer
+        ref={ref}
+        className={cn("flex flex-col items-center py-[286px] gap-4", className)}
+        {...props}
+      >
+        {navItems && navItems.length > 0 && (
+          <div className="flex flex-wrap gap-4 justify-center items-center">
+            {navItems.map(({ path, id, title }) => (
+              <a
+                key={id}
+                href={path}
+                className="text-neutral-600 text-sm p-[2px]"
+              >
+                {title}
+              </a>
+            ))}
+          </div>
+        )}
+
+        <div className="flex flex-col justify-center items-center gap-4">
+          {showSocialIcons && socialIcons && socialIcons.length > 0 && (
+            <div className="flex gap-6 justify-center items-center">
+              {socialIcons.map((icon) => (
+                <IconButton
+                  key={icon.id}
+                  label={icon.label}
+                // onClick={icon.onClick}
+                >
+                  {icon.icon}
+                </IconButton>
+              ))}
+            </div>
+          )}
+
+          {showCopyright && (
+            <div className="text-neutral-900 text-sm">
+              &copy; {yearDisplay} {companyName}. All rights reserved.
+            </div>
+          )}
+        </div>
+      </footer>
+    );
+  }
+);
+
+Footer.displayName = "Footer";
+
+export { Footer };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

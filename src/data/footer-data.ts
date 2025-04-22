@@ -24,32 +24,3 @@ export const sectionsData = [
     path: "/contact"
   }
 ];
-
-// social media data
-// export const socialMediaData = [
-//   {
-//     id: "youtube",
-//     alt: "Youtube",
-//     src: "/icons/youtube-icon.tsx"
-//   },
-//   {
-//     id: "instagram",
-//     alt: "Instagram",
-//     src: "/icons/instagram-icon.tsx"
-//   },
-//   {
-//     id: "facebook",
-//     alt: "Facebook",
-//     src: "/icons/facebook-icon.tsx"
-//   },
-//   {
-//     id: "github",
-//     alt: "Github",
-//     src: "/icons/github-icon.tsx"
-//   },
-//   {
-//     id: "x",
-//     alt: "X",
-//     src: "/icons/x-icon.tsx"
-//   }
-// ];

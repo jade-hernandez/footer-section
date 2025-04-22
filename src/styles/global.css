@@ -8,7 +8,7 @@
   /* "Device" container in Figma */
   .gfe-main {
     /* @apply min-h-screen bg-gradient-main p-4; */
-    @apply min-h-screen bg-white p-4;
+    @apply min-h-screen bg-white;
   }
 
   /* "Content" container in Figma */
