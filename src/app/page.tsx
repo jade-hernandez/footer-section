@@ -1,9 +1,9 @@
-import HelloWorld from "@/components/hello-world";
+import Exercise from "@/components/exercise";
 
 export default function Home() {
   return (
     <main className='gfe-main'>
-      <HelloWorld />
+      <Exercise />
     </main>
   );
 }
