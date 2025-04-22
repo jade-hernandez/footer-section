@@ -2,7 +2,7 @@
 
 ## Live site URL
 
-[https://[footer-section-sigma.vercel.app](https://footer-section-sigma.vercel.app/)
+[https://footer-section-sigma.vercel.app](https://footer-section-sigma.vercel.app/)
 
 ## Step by step guide for creating a new project based on this one
 
