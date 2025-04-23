@@ -51,7 +51,7 @@ const Footer = forwardRef<HTMLElement, FooterProps>(
               <Link
                 key={id}
                 href={path}
-                className="text-neutral-600 text-sm p-[2px]"
+                className="text-neutral-600 text-sm p-[2px] hover:text-neutral-900 focus:rounded focus:border focus:border-indigo-600 focus:shadow-[0_0px_0px_4px_rgba(68,76,231,0.12)] disabled:text-neutral-400 disabled:cursor-not-allowed"
               >
                 {title}
               </Link>
